@@ -1,53 +1,75 @@
 <!doctype html>
-<html lang="en">
-  <head>
+<html lang="en" ng-app='ShoppingListCheckOff'>
+
+<head>
     <title>Shopping List Check Off</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="js/angular.min.js"></script>
+    <script src="app.js"></script>
     <link rel="stylesheet" href="styles/bootstrap.min.css">
     <style>
-      .emptyMessage {
-        font-weight: bold;
-        color: red;
-        font-size: 1.2em;
-      }
-      li {
-        margin-bottom: 7px;
-        font-size: 1.2em;
-      }
-      li > button {
-        margin-left: 6px;
-      }
-      button > span {
-        color: green;
-      }
+        .emptyMessage {
+            font-weight: bold;
+            color: red;
+            font-size: 1.2em;
+        }
+        
+        li {
+            margin-bottom: 7px;
+            font-size: 1.2em;
+        }
+        
+        li > button {
+            margin-left: 6px;
+        }
+        
+        button > span {
+            color: green;
+        }
     </style>
-  </head>
+</head>
+
 <body>
-  <div class="container">
-  <h1>Shopping List Check Off</h1>
+    <div class="container">
+        <h1>Shopping List Check Off</h1>
 
-  <div class="row">
+        <div class="row">
 
-    <!-- To Buy List -->
-    <div class="col-md-6">
-     <h2>To Buy:</h2>
-     <ul>
-       <li>Buy 10 cookies <button class="btn btn-default"><span class="glyphicon glyphicon-ok"></span> Bought</button></li>
-       <li>Buy 10 cookies <button class="btn btn-default"><span class="glyphicon glyphicon-ok"></span> Bought</button></li>
-     </ul>
-     <div class="emptyMessage">Everything is bought!</div>
+            <!-- To Buy List -->
+            <div class="col-md-3">
+                <h4>To Buy:</h4>
+                <div ng-controller='ToBuyShoppingController as toBuyList'>
+                    <table class="table table-bordered table-striped">
+                        <div ng-show="toBuyList.errorMessage" class="emptyMessage">{{toBuyList.errorMessage}}</div>
+                        <tr ng-repeat="item in toBuyList.items">
+                            <td>
+                                Buy {{ item.quantity }} {{ item.name }} </td>
+                            <td>
+                                <button class="btn btn-default btn-xs active" ng-click="toBuyList.addItem($index);"><span class="glyphicon glyphicon-ok"></span> Bought</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+
+            <!-- Already Bought List -->
+            <div class="col-md-3">
+                <h4>Already Bought:</h4>
+                <div ng-controller='AlreadyBoughtShoppingController as boughtList'>
+                    <table class="table table-bordered table-striped">
+                        <div ng-if="boughtList.emptyMessage[0]" class="emptyMessage">{{boughtList.emptyMessage[0]}}</div>
+                        <tr ng-repeat="item in boughtList.items">
+                            <td>
+                                Bought {{ item.quantity }} {{ item.name }}
+                            </td>
+                        </tr>
+                        </ul>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <!-- Already Bought List -->
-    <div class="col-md-6">
-     <h2>Already Bought:</h2>
-     <ul>
-       <li>Bought 10 cookies</li>
-     </ul>
-     <div class="emptyMessage">Nothing bought yet.</div>
-    </div>
-  </div>
-</div>
 
 </body>
+
 </html>
