@@ -1,0 +1,17 @@
+<ul class="list-group">
+    <li ng-if="menu.items.length == 0" class="list-group-item list-group-item-danger text-center"><strong> Nothing found! </strong></li>
+    <li ng-if="menu.items.length >= 1" class="list-group-item active"><span class="badge">{{menu.items.length}}</span><strong> Items containing: {{menu.search}}</strong></li>
+    <li ng-repeat="item in menu.items" class="list-group-item">
+        <table class="table table-bordered table-striped">
+       
+            <tr><td class="col-sm-10">
+                <span class="btn icon-btn btn-primary">{{$index + 1}}</span>  <strong>{{item.name}}</strong> ({{item.short_name}})
+                <p style="font-style: italic;">{{item.description}}</p>
+            </td>
+            <td class="col-sm-2 text-center">
+                <button ng-click="menu.onRemove({index: $index});" class="btn btn-sm btn-info"><span class="glyphicon btn-glyphicon glyphicon-trash text-primary"></span> Don't want this one!</button>
+            </td>
+        </tr>
+        </table>
+    </li>
+</ul>
