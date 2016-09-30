@@ -73,7 +73,7 @@
                     } else {
                         for (var i = 0; i < allItems.length; i++) {
                             var descItem = allItems[i].description;
-                            if (descItem.toLowerCase().indexOf(searchTerm) >= 0) {
+                            if (descItem.toLowerCase().indexOf(searchTerm.toLowerCase()) >= 0) {
                                 foundItems.push(allItems[i]);
                             }
                         }
