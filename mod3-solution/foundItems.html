@@ -3,15 +3,15 @@
     <li ng-if="menu.items.length >= 1" class="list-group-item active"><span class="badge">{{menu.items.length}}</span><strong> Items containing: {{menu.search}}</strong></li>
     <li ng-repeat="item in menu.items" class="list-group-item">
         <table class="table table-bordered table-striped">
-       
-            <tr><td class="col-sm-10">
-                <span class="btn icon-btn btn-primary">{{$index + 1}}</span>  <strong>{{item.name}}</strong> ({{item.short_name}})
-                <p style="font-style: italic;">{{item.description}}</p>
-            </td>
-            <td class="col-sm-2 text-center">
-                <button ng-click="menu.onRemove({index: $index});" class="btn btn-sm btn-info"><span class="glyphicon btn-glyphicon glyphicon-trash text-primary"></span> Don't want this one!</button>
-            </td>
-        </tr>
+            <tr>
+                <td class="col-sm-10">
+                    <span class="btn icon-btn btn-info">{{$index + 1}}</span> <strong>{{item.name}}</strong> ({{item.short_name}}) <span ng-if="item.price_small" class="badge progress-bar-warning">{{item.price_small | currency}} </span> <span ng-if="item.price_large" class="badge progress-bar-danger"> {{item.price_large | currency}}</span>
+                    <p style="font-style: italic;">{{item.description}}</p>
+                </td>
+                <td class="col-sm-2 text-center">
+                    <button ng-click="menu.onRemove({index: $index});" class="btn btn-sm btn-info"><span class="glyphicon btn-glyphicon glyphicon-trash text-primary"></span> Don't want this one!</button>
+                </td>
+            </tr>
         </table>
     </li>
 </ul>

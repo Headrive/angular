@@ -26,7 +26,6 @@
     }
 
 
-
     //*************************************************************
     NarrowItDownController.$inject = ['MenuSearchService'];
 
