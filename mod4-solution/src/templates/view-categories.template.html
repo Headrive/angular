@@ -1,0 +1,29 @@
+<header class="jumbotron">
+    <div class="container">
+        <div class="row row-header">
+            <div class="col-xs-4 col-sm-6">
+                <a ui-sref="home">Home</a> &lt; <span>Categories</span>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+<div class="panel panel-info">
+
+    <table>
+        <tr>
+            <td class="col-xs-4 col-sm-4" style="vertical-align:top">
+                <div class="panel-heading">
+                    <h3>Menu Categories</h3>
+                </div>
+                <categories-list class="categories" items="catList.items"></categories-list>
+            </td>
+            <td class="col-xs-4 col-sm-4" style="vertical-align:top">
+                <ui-view></ui-view>
+            </td>
+        </tr>
+    </table>
+    
+</div>

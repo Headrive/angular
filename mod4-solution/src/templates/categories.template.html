@@ -1,0 +1,15 @@
+<div class="list-group">
+    <div class="list-group-item selection" ng-repeat="item in $ctrl.items | orderBy : 'short_name'" ui-sref="categories.menuitems({catId: item.short_name})">
+        <table class="table table-bordered table-striped ">
+            <tr>
+                <td >
+                    <h4><span class="badge progress-bar-info ">{{item.short_name}} </span> {{item.name}} 
+    </h4>
+                    <p ng-if="item.special_instructions" style="font-style: italic;">
+                        {{item.special_instructions}}
+                    </p>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

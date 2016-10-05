@@ -1,0 +1,20 @@
+<div class="list-group menu-items col-sm-12">
+    <div class="list-group-item row" ng-repeat="menuitem in $ctrl.items">
+        <div >
+            <table class="table table-bordered table-striped ">
+                <tr>
+                    <td>
+                        <span class="badge progress-bar-warning">{{menuitem.short_name}} </span>
+                        <strong>{{menuitem.name}}</strong>
+                        <p style="font-style: italic;">
+                            {{menuitem.description}}
+                        </p>
+                        <p class="pull-right">
+                            <span ng-if="menuitem.price_small"><span>  {{menuitem.small_portion_name}}</span> <span class="badge progress-bar-info">{{menuitem.price_small | currency}}</span>
+                            <span ng-if="menuitem.price_large"><span >{{menuitem.large_portion_name}}</span> <span class="badge progress-bar-danger ">{{menuitem.price_large | currency}}</span>
+                        </p>
+                    </td>
+
+                </tr>
+            </table>
+        </div>
