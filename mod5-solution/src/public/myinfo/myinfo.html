@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row row-content">
+        <h2 id="myinfo-title" class="text-center">My info</h2>
+        <div class="text-center">
+            user registered" informations, including the favorite menu item .
+        </div>
+        <div class="col-xs-12 col-sm-9">
+            <div ng-if="!myinfoCtrl.myInfo.firstName" class="alert alert-danger">
+                <h3>Not Signed Up Yet. <a ui-sref="public.signup">Sign up Now!</a></h3>
+            </div>
+            <div ng-if="myinfoCtrl.myInfo.firstName">
+
+                <blockquote>
+                    <p>Name : {{myinfoCtrl.myInfo.firstName}} {{myinfoCtrl.myInfo.lastName | uppercase }}</p>
+                    <p>Contact Tel.: ({{myinfoCtrl.myInfo.tel.areaCode}}) {{myinfoCtrl.myInfo.tel.number}}</p>
+                    <p>Contact Email: {{myinfoCtrl.myInfo.email}}</p>
+                    <hr>
+                    <p>
+                        <h4>{{ myinfoCtrl.myInfo.favoritemenu}} is my favorite menu : </h4></p>
+                    <div ng-if="signupCtrl.serverError" class="alert alert-danger">
+                        <h3>{{signupCtrl.messageServerError}}</h3>
+                    </div>
+                    <div class="container">
+                        <menu-item menu-item="myinfoCtrl.menuItem">
+                        </menu-item>
+                    </div>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+</div>

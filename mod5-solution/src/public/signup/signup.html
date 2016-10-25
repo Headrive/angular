@@ -1,0 +1,94 @@
+<div class="container">
+    <div class="row row-content">
+        <div class="col-xs-12">
+            <h3>My informations</h3>
+        </div>
+        <div class="col-xs-12 col-sm-9">
+            <form class="form-horizontal" name="signupForm" ng-submit="signupCtrl.submit()" novalidate>
+                <div class="form-group" ng-class="{ 'has-error' : signupForm.firstname.$error.required && signupForm.firstname.$touched }">
+                    <label for="firstname" class="col-sm-2 control-label">First Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Enter First Name" ng-model="signupCtrl.firstName" required autofocus>
+                        <span ng-show="signupForm.firstname.$error.required && signupForm.firstname.$touched" class="help-block">Your First name is required.</span>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error' : signupForm.lastname.$error.required && signupForm.lastname.$touched }">
+                    <label for="lastname" class="col-sm-2 control-label">Last Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Enter Last Name" ng-model="signupCtrl.lastName" required>
+                        <span ng-show="signupForm.lastname.$error.required && signupForm.lastname.$touched" class="help-block">Your Last name is required.</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="telnum" class="col-sm-2 control-label">Contact Tel.</label>
+                    <div class="col-xs-5 col-sm-4 col-md-3">
+                        <div class="input-group">
+                            <div class="input-group-addon">(</div>
+                            <input type="tel" class="form-control" placeholder="Area code ##" ng-model="signupCtrl.tel.areaCode" pattern="(\d{2})">
+                            <div class="input-group-addon">)</div>
+                        </div>
+                    </div>
+                    <div class="col-xs-7 col-sm-6 col-md-7">
+                        <input type="tel" class="form-control" id="telnum" name="telnum" placeholder="Tel. number ###-###-####" ng-model="signupCtrl.tel.number" pattern="(\d{3})-(\d{3})-(\d{4})">
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error' : signupForm.emailid.$invalid && signupForm.emailid.$touched }">
+                    <label for="emailid" class="col-sm-2 control-label">Email</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" id="emailid" name="emailid" placeholder="Email" ng-model="signupCtrl.email" required>
+                        <span ng-show="signupForm.emailid.$invalid && signupForm.emailid.$touched" class="glyphicon glyphicon-remove form-control-signup" aria-hidden="true"></span>
+                        <span ng-show="(signupForm.emailid.$invalid ||
+                                        signupForm.emailid.$error.required) &&
+                                        signupForm.emailid.$touched" class="help-block">Enter a valid email address.</span>
+                    </div>
+                </div>
+
+                <div class="form-group" ng-class="{ 'has-error' : signupForm.favoritemenu.$error.required && signupForm.favoritemenu.$touched }">
+                    <label for="favoritemenu" class="col-sm-2 control-label">Favorite menu</label>
+                    <div class="col-lg-2">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-cutlery" aria-hidden="true"></i></span>
+
+                            <input type="text" class="form-control" id="favoritemenu" name="favoritemenu" placeholder="menu short name" ng-model="signupCtrl.favoritemenu" ng-blur="signupCtrl.checkMenuItem()" required>
+                            <span ng-show="signupForm.favoritemenu.$error.required && signupForm.favoritemenu.$touched" class="help-block">Your favorite menu (short name) is required.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div ng-if="signupCtrl.serverError" class="alert alert-danger">
+                    <h3>{{signupCtrl.messageServerError}}</h3>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10 ">
+                        <button type="submit" class="btn btn-primary" ng-disabled="signupForm.$invalid">Register</button>
+                    </div>
+                </div>
+            </form>
+
+            <div id="info" ng-if="signupCtrl.completed">
+                <div class="col-sm-offset-2 col-sm-10 ">
+                    <blockquote class="alert alert-info">
+                        <p>
+                            <h3>Your informations have been registered !</h3> </p>
+                        <br> Name: {{signupCtrl.firstName}} {{ signupCtrl.lastName}}
+                        <br> Email: {{ signupCtrl.email}}
+                        <br> Phone: ({{ signupCtrl.tel.areaCode }}) {{ signupCtrl.tel.number}}
+
+                    </blockquote>
+                </div>
+            </div>
+            <div id="favoriteMenuDesc" ng-if="signupCtrl.menuItemFound || signupCtrl.completed">
+                <div class="col-sm-offset-2 col-sm-10 ">
+                    <blockquote class="alert alert-info">
+                       <p> <h4>{{ signupCtrl.favoritemenu}} is your favorite menu : </h4></p>
+                        <div class="container">
+                            <menu-item menu-item="signupCtrl.menuItem">
+                            </menu-item>
+                        </div>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
